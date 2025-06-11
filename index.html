@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nosso Tempo Juntos</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  </head>
+  <body>
+    <!-- TELA DE ABERTURA -->
+    <div id="splash-screen">
+      <button id="open-letter-btn" disabled>Carregando...</button>
+    </div>
+
+    <!-- PLAYER DE MÚSICA (FICA INVISÍVEL) -->
+    <div id="youtube-player"></div>
+
+    <!-- CONTEÚDO PRINCIPAL (INICIA ESCONDIDO) -->
+    <main id="main-content">
+      <div id="captureArea" class="container">
+        <header>
+          <h1>YAN & SARA</h1>
+          <p class="subtitle">
+            Celebrando nosso tempo juntos desde 05 de Fevereiro de 2019
+          </p>
+        </header>
+
+        <section class="gallery-section">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="assets/fotos/first-1.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/first.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/first-3.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/1.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/2.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/3.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/4.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/5.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/6.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/7.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/8.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/9.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/10.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/11.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/12.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/13.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/14.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/16.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/17.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/18.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/19.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/20.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/21.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/22.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/23.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/24.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/25.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/26.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/fotos/27.jpg" />
+              </div>
+            </div>
+           <!--  <div class="swiper-pagination"></div> -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </section>
+
+        <section class="message">
+          <h2>Uma mensagem para você:</h2>
+          <p>
+            Meu amor,<br />
+            Te escrevo estas linhas para te dizer o quanto te amo e o quanto
+            você é importante na minha vida. Você sabe que nem sempre encontro
+            as palavras certas para me expressar, mas isso não quer dizer que a
+            intensa paixão que sinto em meu peito tenha mudado desde que nos
+            conhecemos. Hoje esse amor é ainda maior, porque ele cresce com o
+            tempo e se fortalece. Saber que sou seu me conforta. Você tem estado
+            comigo nos momentos difíceis, durante as tormentas e, mesmo quando a
+            calmaria chega, você segue sempre ao meu lado. Eu amo o seu sorriso
+            e não conseguiria viver sem ele. Contigo, me sinto protegido, capaz
+            de realizar qualquer sonho e vencer qualquer batalha. Eu te amo
+            daqui até a eternidade.
+          </p>
+        </section>
+
+        <section class="counter">
+          <h2>Estamos juntos há...</h2>
+          <div class="time-display">
+            <div class="time-unit">
+              <span id="years">0</span><label>Anos</label>
+            </div>
+            <div class="time-unit">
+              <span id="months">0</span><label>Meses</label>
+            </div>
+            <div class="time-unit">
+              <span id="days">0</span><label>Dias</label>
+            </div>
+            <div class="time-unit">
+              <span id="hours">0</span><label>Horas</label>
+            </div>
+            <div class="time-unit">
+              <span id="minutes">0</span><label>Minutos</label>
+            </div>
+            <div class="time-unit">
+              <span id="seconds">0</span><label>Segundos</label>
+            </div>
+          </div>
+        </section>
+
+        <section class="fun-facts">
+          <h2>Nesse tempo, já compartilhamos:</h2>
+          <ul>
+            <li><span id="christmases">0</span> Natais</li>
+            <li><span id="valentines">0</span> Dias dos Namorados</li>
+            <li>Aproximadamente <span id="fullMoons">0</span> Luas Cheias</li>
+          </ul>
+        </section>
+
+        <section class="anniversaries">
+          <h2>Nossas Bodas</h2>
+          <ul id="bodasList"></ul>
+        </section>
+      </div>
+
+      <div class="download-section">
+        <button id="downloadBtn">Baixar uma imagem deste momento</button>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- API do YouTube para controlar a música -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
