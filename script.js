@@ -1,58 +1,62 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     // --- ELEMENTOS DO DOM ---
     const openLetterBtn = document.getElementById('open-letter-btn');
     const splashScreen = document.getElementById('splash-screen');
     const mainContent = document.getElementById('main-content');
-    let player; // A variável do player fica neste escopo
+    let player; // A variável do player é declarada aqui
 
-    // --- LÓGICA DA TELA DE ABERTURA E MÚSICA (VERSÃO CORRIGIDA) ---
+    // --- LÓGICA DA TELA DE ABERTURA E MÚSICA (VERSÃO CORRIGIDA PARA TELEMÓVEL) ---
 
-    // 1. Torna a função de callback da API do YouTube globalmente acessível.
-    // A API do YouTube procurará esta função específica no objeto `window`.
+    // 1. Torna a função de callback da API do YouTube acessível globalmente.
+    // A API do YouTube procurará por 'window.onYouTubeIframeAPIReady'.
     window.onYouTubeIframeAPIReady = function() {
-        // A API está carregada. Habilita o botão para o utilizador poder clicar.
-        openLetterBtn.disabled = false;
-        openLetterBtn.textContent = 'Abrir carta';
+        // Cria a instância do player mas ainda não o inicia.
+        // Apenas pré-carrega o vídeo e prepara o player.
+        player = new YT.Player('youtube-player', {
+            height: '0',
+            width: '0',
+            videoId: 'sXybcOjldq4', // ID da sua música
+            playerVars: {
+                'playsinline': 1, // Essencial para a reprodução no iOS
+                'controls': 0,    // Ocultar controlos
+                'loop': 1,        // Repetir a música
+                'playlist': 'sXybcOjldq4' // Necessário para o loop funcionar
+            },
+            events: {
+                // A função 'onReady' é chamada quando o player está pronto.
+                'onReady': onPlayerReady
+            }
+        });
     };
 
-    // 2. Adiciona o evento de clique ao botão
+    // 2. Esta função é chamada quando o player está pronto a receber comandos.
+    function onPlayerReady(event) {
+        // Agora que o player está pronto, ativa o botão.
+        openLetterBtn.disabled = false;
+        openLetterBtn.textContent = 'Abrir carta';
+    }
+
+    // 3. Adiciona o evento de clique ao botão, que agora tem uma única responsabilidade.
     openLetterBtn.addEventListener('click', () => {
         // Esconde a tela de abertura e mostra o conteúdo principal
         splashScreen.classList.add('hidden');
         mainContent.classList.add('visible');
         setTimeout(() => {
             splashScreen.remove();
-        }, 1000); // Mesmo tempo da transição no CSS
+        }, 1000);
 
-        // 3. Cria o player SOMENTE após o clique do utilizador.
-        // Esta é a maneira mais robusta de contornar as restrições de autoplay dos navegadores.
-        if (!player) { // Garante que o player seja criado apenas uma vez
-            player = new YT.Player('youtube-player', {
-                height: '0',
-                width: '0',
-                videoId: 'sXybcOjldq4', // ALTERADO: ID da nova música
-                playerVars: {
-                    'autoplay': 1, // O autoplay funciona aqui porque a criação foi iniciada pelo utilizador
-                    'controls': 0, // Esconder controlos
-                    'loop': 1,     // Repetir a música
-                    'playlist': 'sXybcOjldq4' // ALTERADO: Necessário para o loop funcionar
-                },
-                events: {
-                    'onReady': (event) => {
-                        // O vídeo deve tocar automaticamente devido ao autoplay: 1, mas isto garante
-                        event.target.playVideo();
-                    }
-                }
-            });
+        // 4. Dá o comando de reprodução. Esta é a ação mais direta possível
+        // ligada ao toque do utilizador, o que maximiza a compatibilidade com telemóveis.
+        if (player && typeof player.playVideo === 'function') {
+            player.playVideo();
+            player.unMute(); // Garante que o som não esteja no mudo
         }
     });
 
 
-    // --- LÓGICA PRINCIPAL DA PÁGINA (O RESTO DO CÓDIGO) ---
+    // --- LÓGICA PRINCIPAL DA PÁGINA (RESTO DO CÓDIGO SEM ALTERAÇÕES) ---
     
     const startDate = new Date('2019-02-05T00:00:00');
-
     const yearsEl = document.getElementById('years');
     const monthsEl = document.getElementById('months');
     const daysEl = document.getElementById('days');
